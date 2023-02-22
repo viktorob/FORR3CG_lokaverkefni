@@ -60,13 +60,20 @@ void Bunadur::set_haed(int ny_haed) {
 }
 
 int Bunadur::get_herbergi() {
-
+    return this->stadsetning[2];
 }
 
 void Bunadur::set_herbergi(int nytt_herbergi) {
-
+    this->stadsetning[2] = nytt_herbergi;
 }
 
-void Bunadur::prentaAllt() {
+void Bunadur::prenta() {
+    std::cout << "Búnaður, auðkenni: " << std::to_string(this->get_audkenni()) << ", verðmæti: " 
+              << std::to_string(this->get_verdmaeti()) << ", hús: " << std::to_string(this->get_hus()) 
+              << ", hæð:" << std::to_string(this->get_haed()) << ", herbergi: " << std::to_string(this->get_herbergi()) 
+              << "\n";
+}
 
+std::string Bunadur::getType() {
+    return "dýr";
 }

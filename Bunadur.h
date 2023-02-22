@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+//bæta við cout stuðning sem aukakröfu t.d.
+
 class Bunadur {
     protected:
         int audkenni;
@@ -22,5 +24,7 @@ class Bunadur {
         void set_haed(int ny_haed);
         int get_herbergi();
         void set_herbergi(int nytt_herbergi);
-        void prentaAllt();
+        virtual void prenta();
+        virtual std::string getType();
+        //virtual ~Bunadur();
 };
