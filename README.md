@@ -1,5 +1,5 @@
-# FORR3CG_lokaverkefni
-FORR3CG Lokaverkefni
+# FORR3CG - Lokaverkefni
+Viktor Óli Bjarkason - Tækniskólinn - 2023
 
 # Dagbók
 
