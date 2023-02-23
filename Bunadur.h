@@ -27,4 +27,9 @@ class Bunadur {
         virtual void prenta();
         virtual std::string getType();
         //virtual ~Bunadur();
+
+        bool operator<(Bunadur& hinn);
+        bool operator>(Bunadur& hinn);
+        bool operator<=(Bunadur& hinn);
+        bool operator>=(Bunadur& hinn);
 };

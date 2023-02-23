@@ -77,3 +77,19 @@ void Bunadur::prenta() {
 std::string Bunadur::getType() {
     return "dýr";
 }
+
+bool Bunadur::operator<(Bunadur& hinn) {
+    return this->get_verdmaeti() < hinn.get_verdmaeti();
+}
+
+bool Bunadur::operator>(Bunadur& hinn) {
+    return hinn < *this;
+}
+
+bool Bunadur::operator<=(Bunadur& hinn) {
+    return !(*this > hinn);
+}
+
+bool Bunadur::operator>=(Bunadur& hinn) {
+    return !(*this < hinn);
+}
