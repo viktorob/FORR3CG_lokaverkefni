@@ -12,7 +12,7 @@ class Tolva : public Bunadur {
         Tolva();
         Tolva(int audkenni, int stadsetning, int verdmaeti, int kaupar);
         int get_kaupar();
-        int set_kaupar(int nytt_kaupar);
+        void set_kaupar(int nytt_kaupar);
         void prenta();
         std::string getType();
 };

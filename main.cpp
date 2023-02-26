@@ -1,8 +1,11 @@
+// Viktor Óli Bjarkason
+// FORR3CG - Lokaverkefni
 // Innsláttur
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <sstream>
+#include <fstream>
 
 #include "BunadarListi.h"
 #include "rlutil.h"
@@ -13,60 +16,37 @@
 void skil_ekki(std::string ordid) {
     rlutil::setColor(rlutil::RED);
     std::cout << "Villa, skil ekki orðið: " << ordid << "!\n";
-    rlutil::resetColor();
+    rlutil::setColor(rlutil::BLUE);
 }
-
-// COMMANDS
-// TÝPA = borð, stóll, skjávarpi og tölva
-// AUKA = sætafjöldi, snúningur, lúmen, kaupár
-
-// SKRÁ búnað - syntax
-// skrá TÝPA {auðkenni} {stadsetning} {verðmæti} {AUKA}
-// Dæmi: skrá borð 501 21209 1000 4
-
-// EYÐA búnaði - syntax
-// eyða {auðkenni}
-// Dæmi: eyða 501
-
-// UPPFÆRA staðsetningu búnaðar
-// uppfæra {auðkenni} {ný staðsetning}
-// Dæmi: uppfæra 501 23250
-
-// PRENTA búnað eftir auðkenni
-// prenta id {auðkenni}
-// Dæmi: prenta 501
-
-// PRENTA búnað eftir húsi
-// prenta hús {hús}
-// Dæmi: prenta hús 09
-
-
 
 int main() {
     rlutil::saveDefaultColor();
+    rlutil::setConsoleTitle("FORR3CG Lokaverkefni - Viktor");
+    rlutil::setColor(rlutil::BLUE);
+    std::cout << "Viktor Óli Bjarkason\n";
+    std::cout << "FORR3CG Lokaverkefni\n";
+    std::cout << "--------------------\n";
+    
+    rlutil::setColor(rlutil::GREEN);
+    std::cout << "Velkomin/n\n\n";
+    rlutil::setColor(rlutil::BLUE);
 
     BunadarListi bl;
-    
-    // PRÓFUNARGÖGN
-    bl.skra_bord(501, 21209, 1000, 4);
-    bl.skra_bord(502, 10410, 2000, 2);
-    bl.skra_stol(503, 21209, 4000, 0);
-    bl.skra_stol(504, 21209, 4000, 0);
-    bl.skra_skjavarpa(505, 10410, 100000, 4000);
-    bl.skra_skjavarpa(506, 21209, 100000, 4000);
-    bl.skra_tolvu(507, 21209, 50000, 2019);
-    bl.skra_tolvu(508, 21209, 50000, 2019);
-    bl.skra_tolvu(509, 21209, 50000, 2019);
-    bl.skra_tolvu(510, 21209, 50000, 2019);
+    /*
+    // PRÓFUNARGÖGN eru útfærð í gogn.txt
+    // nóg að skrifa bara "lesa" og þá eru gögnin úr gogn.txt lesin inn (prófunargögnin)
+    */
 
     //ATH: þótt listinn sé raðaður prentast hann ekki þannig því ég þarf að útfæra það í prenta_allt fallinu líka (auka)
     
-    std::string inntak, skipun, gerd, er_snuningur, prentun;
-    int audkenni, stadsetning, verdmaeti, saeta_fjoldi, lumen, kaupar, ny_stadsetning, hus;
+    std::string inntak, skipun, gerd, er_snuningur, prentun, skraarheiti, lesa_bara;
+    int audkenni, stadsetning, verdmaeti, saeta_fjoldi, lumen, kaupar, ny_stadsetning, hus, haed, herbergi;
     bool snuningur;
 
     do {
+        rlutil::setColor(rlutil::BLUE);
         std::cout << "Sláðu inn skipun: ";
+        rlutil::resetColor();
         std::getline(std::cin, inntak); // les inntak frá notanda inn í inntaks breytuna
         std::stringstream ss;
         ss << inntak;
@@ -97,12 +77,10 @@ int main() {
             // breytir staðsetningu búnaðar og lætur notanda vita hvort það tókst
             if(bl.breyta_stadsetningu(audkenni, ny_stadsetning)) {
                 rlutil::setColor(rlutil::GREEN);
-                std::cout << "Staðsetningu búnaðar nr. " << audkenni << " breytt";
-                rlutil::resetColor();
+                std::cout << "Staðsetningu búnaðar nr. " << audkenni << " breytt\n";
             } else {
                 rlutil::setColor(rlutil::RED);
-                std::cout << "Ekki tókst að uppfæra staðsetningu búnaðar nr. " << audkenni;
-                rlutil::resetColor();
+                std::cout << "Villa, ekki tókst að uppfæra staðsetningu búnaðar nr. " << audkenni << "\n";
             }
         } else if(skipun == "eyða") {
             ss >> audkenni;
@@ -110,41 +88,98 @@ int main() {
             if(bl.eyda_bunadi(audkenni)) {
                 rlutil::setColor(rlutil::GREEN);
                 std::cout << "Búnaði nr. " << audkenni << " eytt\n";
-                rlutil::resetColor();
             } else {
                 rlutil::setColor(rlutil::RED);
-                std::cout << "Ekki tókst að eyða búnaði nr. " << audkenni;
-                rlutil::resetColor();
+                std::cout << "Villa, ekki tókst að eyða búnaði nr. " << audkenni << "!\n";
             }
-            
-        } else if(skipun == "prenta") {
-            ss >> prentun;
-            //útfæra allt prenta dót hér
+        } else if(skipun == "vista") {
+                // ef ekki annað orð þá er skráarheitið t.d. listi.txt
+                // annars er orð nr 2 skráarheitið
+                ss >> skraarheiti;
+                if(skraarheiti.length() == 0) {
+                    skraarheiti = "gogn";
+                }
+                if(!bl.skrifa_i_skra(skraarheiti)) {
+                    rlutil::setColor(rlutil::RED);
+                    std::cout << "Villa, ekki tókst að vista gögn!\n";
+                } else {
+                    rlutil::setColor(rlutil::GREEN);
+                    std::cout << "Gögn vistuð.\n";
+                }
+            } else if(skipun == "lesa") { // lesa úr skrá
+                ss >> skraarheiti >> lesa_bara;
+                if(skraarheiti.length() == 0) { // ef notandi valdi skráarheiti sjálfur
+                    skraarheiti = "gogn";
+                }
+                bl = bl.lesa_ur_skra(skraarheiti);
+                rlutil::setColor(rlutil::GREEN);
+                std::cout << "Gögn lesin inn úr " << skraarheiti << ".txt\n";
+                
+            } else if(skipun == "prenta") {
+                ss >> prentun;
             if(prentun == "allt") {
-                rlutil::setColor(rlutil::BLUE);
-                bl.prenta_allt();
-                rlutil::resetColor();
+                rlutil::setColor(rlutil::YELLOW);
+                // reynir að prenta en ef listi er tómur prentar villu
+                if(!bl.prenta_allt()) {
+                    rlutil::setColor(rlutil::RED);
+                    std::cout << "Villa, ekkert til að prenta!\n";
+                }
+                
             } else if(prentun == "hús") {
                 ss >> hus;
-                rlutil::setColor(rlutil::BLUE);
+                rlutil::setColor(rlutil::YELLOW);
                 bl.prenta_i_husi(hus);
-                rlutil::resetColor();
+                
             } else if(prentun == "id") {
                 ss >> audkenni;
-                rlutil::setColor(rlutil::BLUE);
-                bl.prenta_eftir_audkenni(audkenni);
-                rlutil::resetColor();
+                rlutil::setColor(rlutil::YELLOW);
+                // prentar eftir auðkenni frá notanda og prentar villumeldingu ef fann ekki auðkennið
+                if(!bl.prenta_eftir_audkenni(audkenni)) {
+                    rlutil::setColor(rlutil::RED);
+                    std::cout << "Villa, fann ekki búnað nr. " << audkenni << "!\n";
+                }
+                
+            } else if(prentun == "stað") {
+                ss >> hus >> haed >> herbergi;
+                rlutil::setColor(rlutil::YELLOW);
+                // prentar búnað á stað sem notandi valdi og prentar villu ef enginn finnst
+                if(!bl.prenta_a_sama_stad(hus, haed, herbergi)) {
+                    rlutil::setColor(rlutil::RED);
+                    std::cout << "Villa, enginn búnaður fannst í húsi " << hus << ", hæð " << haed << ", herbergi " << herbergi << "!\n";
+                }
+                
+            } else if(prentun == "borð") {
+                rlutil::setColor(rlutil::YELLOW);
+                bl.prenta_bord();
+            } else if(prentun == "stóla") {
+                rlutil::setColor(rlutil::YELLOW);
+                bl.prenta_stola();
+            } else if(prentun == "skjávarpa") {
+                rlutil::setColor(rlutil::YELLOW);
+                bl.prenta_skjavarpa();
+            } else if(prentun == "tölvur") {
+                rlutil::setColor(rlutil::YELLOW);
+                bl.prenta_tolvur();
+            } else if(prentun == "skra") {
+                BunadarListi bl2;
+                ss >> skraarheiti;
+                if(skraarheiti.length() == 0) {
+                    skraarheiti = "gogn";
+                }
+                bl2 = bl.lesa_ur_skra(skraarheiti);
+                rlutil::setColor(rlutil::YELLOW);
+                bl2.prenta_allt();
+            } else {
+                skil_ekki(prentun);
             }
+
         } else if(skipun != "hætta") {
             skil_ekki(skipun);
         }
 
-
-
     } while(skipun!= "hætta");
-
-    
-
+    rlutil::setColor(rlutil::GREEN);
+    std::cout << "Sjáumst síðar!\n";
     return 0;
 }
 // Útsláttur

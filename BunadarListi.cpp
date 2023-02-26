@@ -14,6 +14,56 @@ BunadarListi::BunadarListi(int staerd) {
     this->heads = new BunadarNode*[this->staerd]();
 }
 
+BunadarListi::BunadarListi(BunadarListi& gamli) {
+    this->staerd = gamli.staerd;
+    this->heads = new BunadarNode*[this->staerd]();
+    for(int idx = 0; idx < this->staerd; idx++) {
+        BunadarNode* gamli_current = gamli.heads[idx];
+        while(gamli_current) {
+            if(gamli_current->bun->getType() == "bord") {
+                Bord* b = (Bord*)gamli_current->bun; // typecastar búnaðarpointer í borðapointer
+                this->skra_bunad(new Bord(b->get_audkenni(), b->get_stadsetning(), b->get_verdmaeti(), b->get_saeti()));
+            } else if(gamli_current->bun->getType() == "stoll") {
+                Stoll* s = (Stoll*)gamli_current->bun; // typecastar búnaðarpointer í stólapointer
+                this->skra_bunad(new Stoll(s->get_audkenni(), s->get_stadsetning(), s->get_verdmaeti(), s->get_snuningur()));
+            } else if(gamli_current->bun->getType() == "skjavarpi") {
+                Skjavarpi* sv = (Skjavarpi*)gamli_current->bun; // typecastar búnaðarpointer í skjávarpapointer
+                this->skra_bunad(new Skjavarpi(sv->get_audkenni(), sv->get_stadsetning(), sv->get_verdmaeti(), sv->get_lumen()));
+            } else if(gamli_current->bun->getType() == "tolva") {
+                Tolva* t = (Tolva*)gamli_current->bun; // typecastar búnaðarpointer í tölvupointer
+                this->skra_bunad(new Tolva(t->get_audkenni(), t->get_stadsetning(), t->get_verdmaeti(), t->get_kaupar()));
+            }
+            gamli_current = gamli_current->next;
+        }
+    }
+}
+
+BunadarListi& BunadarListi::operator=(BunadarListi& gamli) {
+    this->staerd = gamli.staerd;
+    this->heads = new BunadarNode*[this->staerd]();
+    for(int idx = 0; idx < this->staerd; idx++) {
+        BunadarNode* gamli_current = gamli.heads[idx];
+        while(gamli_current) {
+            if(gamli_current->bun->getType() == "bord") {
+                Bord* b = (Bord*)gamli_current->bun; // typecastar búnaðarpointer í borðapointer
+                this->skra_bunad(new Bord(b->get_audkenni(), b->get_stadsetning(), b->get_verdmaeti(), b->get_saeti()));
+            } else if(gamli_current->bun->getType() == "stoll") {
+                Stoll* s = (Stoll*)gamli_current->bun; // typecastar búnaðarpointer í stólapointer
+                this->skra_bunad(new Stoll(s->get_audkenni(), s->get_stadsetning(), s->get_verdmaeti(), s->get_snuningur()));
+            } else if(gamli_current->bun->getType() == "skjavarpi") {
+                Skjavarpi* sv = (Skjavarpi*)gamli_current->bun; // typecastar búnaðarpointer í skjávarpapointer
+                this->skra_bunad(new Skjavarpi(sv->get_audkenni(), sv->get_stadsetning(), sv->get_verdmaeti(), sv->get_lumen()));
+            } else if(gamli_current->bun->getType() == "tolva") {
+                Tolva* t = (Tolva*)gamli_current->bun; // typecastar búnaðarpointer í tölvupointer
+                this->skra_bunad(new Tolva(t->get_audkenni(), t->get_stadsetning(), t->get_verdmaeti(), t->get_kaupar()));
+            }
+            gamli_current = gamli_current->next;
+        }
+    }
+    return *this;
+}
+
+
 void BunadarListi::skra_bunad(Bunadur* bun) {
     int idx = this->hash(bun->get_audkenni());
     BunadarNode* new_bun = new BunadarNode(bun);
@@ -38,6 +88,10 @@ void BunadarListi::skra_bunad(Bunadur* bun) {
             }
         }
     }
+}
+
+void BunadarListi::skra_bunad(int audkenni, int stadsetning, int verdmaeti) {
+    this->skra_bunad(new Bunadur(audkenni, stadsetning, verdmaeti));
 }
 
 void BunadarListi::skra_bord(int audkenni, int stadsetning, int verdmaeti, int saeta_fjoldi) {
@@ -99,6 +153,7 @@ bool BunadarListi::breyta_stadsetningu(int audkenni, int ny_stadsetning) {
     if(this->heads[idx]) { // ef listi er ekki tómur
         if(this->heads[idx]->bun->get_audkenni() == audkenni) { // ef stak með auðkennið fannst og er fremst
             this->heads[idx]->bun->set_stadsetning(ny_stadsetning); // uppfærir staðsetningu
+            return true;
         } else { // ef stak fannst ekki
             BunadarNode* current = this->heads[idx];
             while(current && current->bun->get_audkenni() != audkenni) { // keyrir á meðan auðkenni finnst ekki
@@ -123,28 +178,169 @@ void BunadarListi::prenta_i_husi(int hus) {
                 current->bun->prenta();
                 return;
             }
+            current = current->next;
         }
     }
 }
 
-void BunadarListi::prenta_eftir_audkenni(int audkenni) {
+bool BunadarListi::prenta_eftir_audkenni(int audkenni) {
     for (int idx = 0; idx < this->staerd; idx++) {
         BunadarNode* current = this->heads[idx];
         while(current) {
             if (current->bun->get_audkenni() == audkenni) {
                 current->bun->prenta();
-                return;
+                return true;
             }
+            current = current->next;
+        }
+    }
+    return false;
+}
+
+void BunadarListi::prenta_bord() {
+    for(int idx = 0; idx < this->staerd; idx++) {
+        BunadarNode* current = this->heads[idx];
+        while(current) {
+            if(current->bun->getType() == "bord") {
+                current->bun->prenta();
+            }
+            current = current->next;
         }
     }
 }
 
-void BunadarListi::prenta_allt() {
+void BunadarListi::prenta_stola() {
+    for(int idx = 0; idx < this->staerd; idx++) {
+        BunadarNode* current = this->heads[idx];
+        while(current) {
+            if(current->bun->getType() == "stoll") {
+                current->bun->prenta();
+            }
+            current = current->next;
+        }
+    }
+}
+
+void BunadarListi::prenta_skjavarpa() {
+    for(int idx = 0; idx < this->staerd; idx++) {
+        BunadarNode* current = this->heads[idx];
+        while(current) {
+            if(current->bun->getType() == "skjavarpi") {
+                current->bun->prenta();
+            }
+            current = current->next;
+        }
+    }
+}
+
+void BunadarListi::prenta_tolvur() {
+    for(int idx = 0; idx < this->staerd; idx++) {
+        BunadarNode* current = this->heads[idx];
+        while(current) {
+            if(current->bun->getType() == "tolva") {
+                current->bun->prenta();
+            }
+            current = current->next;
+        }
+    }
+}
+
+bool BunadarListi::prenta_a_sama_stad(int hus, int haed, int herbergi) {
+    bool fannst = false;
+    for(int idx = 0; idx < this->staerd; idx++) {
+        BunadarNode* current = this->heads[idx];
+        while(current) {
+            // ef hús, hæð og herbergi er það sama
+            if(current->bun->get_hus() == hus && current->bun->get_haed() == haed && current->bun->get_herbergi() == herbergi) {
+                current->bun->prenta();
+                fannst = true;
+            }
+            current = current->next;
+        }
+    }
+    return fannst;
+}
+
+bool BunadarListi::prenta_allt() {
+    bool fannst = false;
     for (int idx = 0; idx < this->staerd; idx++) {
         BunadarNode* current = this->heads[idx];
         while(current) {
             current->bun->prenta();
             current = current->next;
+            fannst = true;
         }
     }
+    return fannst;
+}
+
+// Les úr skrá sem notandi velur og breytir því sem er í henni í objecta og setur í Búnaðarlista
+// tekur inn skráarheiti
+// skilar pointer á BunadarLista með gögnunum í skránni
+BunadarListi& BunadarListi::lesa_ur_skra(std::string skraarheiti) {
+    std::ifstream lesa(skraarheiti+".txt");
+    BunadarListi* bl = new BunadarListi;
+
+    if(!lesa) {
+        return *bl; // skilar pointer á tóman BunadarLista
+    } else {
+        std::string gerd;
+        int audkenni, stadsetning, verdmaeti, saeta_fjoldi, lumen, kaupar;
+        bool snuningur;
+        // les úr skránni og býr til object eftir hvernig týpa gögnin eru
+        while(lesa >> gerd >> audkenni >> stadsetning >> verdmaeti) {
+            if(gerd == "bord") {
+                lesa >> saeta_fjoldi;
+                bl->skra_bord(audkenni, stadsetning, verdmaeti, saeta_fjoldi);
+            } else if(gerd == "stoll") {
+                lesa >> snuningur;
+                bl->skra_stol(audkenni, stadsetning, verdmaeti, snuningur);
+            } else if(gerd == "skjavarpi") {
+                lesa >> lumen;
+                bl->skra_skjavarpa(audkenni, stadsetning, verdmaeti, lumen);
+            } else if(gerd == "tolva") {
+                lesa >> kaupar;
+                bl->skra_tolvu(audkenni, stadsetning, verdmaeti, kaupar);
+            } else { // ef bara búnaður
+                bl->skra_bunad(audkenni, stadsetning, verdmaeti);
+            }
+        }
+    }
+    return *bl;
+}
+
+bool BunadarListi::skrifa_i_skra(std::string skraarheiti) {
+    std::ofstream skrifa(skraarheiti+".txt");
+
+    if(!skrifa) {
+        return false;
+    } else {
+        for(int idx = 0; idx < this->staerd; idx++) {
+            BunadarNode* current = this->heads[idx];
+            while(current) {
+                //skrifa í skránna
+                skrifa << current->bun->getType() << " " << current->bun->get_audkenni() << " " << current->bun->get_stadsetning() << " " << current->bun->get_verdmaeti();
+                if(current->bun->getType() == "bord") {
+                    Bord* b = (Bord*)current->bun; // typecastar búnaðarpointer í borðapointer
+                    skrifa << " " << b->get_saeti() << "\n";
+
+                } else if(current->bun->getType() == "stoll") {
+                    Stoll* s = (Stoll*)current->bun; // typecastar búnaðarpointer í borðapointer
+                    skrifa << " " << s->get_snuningur() << "\n";
+
+                } else if(current->bun->getType() == "skjavarpi") {
+                    Skjavarpi* sk = (Skjavarpi*)current->bun; // typecastar búnaðarpointer í borðapointer
+                    skrifa << " " << sk->get_lumen() << "\n";
+
+                } else if(current->bun->getType() == "tolva") {
+                    Tolva* t = (Tolva*)current->bun; // typecastar búnaðarpointer í borðapointer
+                    skrifa << " " << t->get_kaupar() << "\n";
+
+                }
+                current = current->next;
+            }
+        }
+    }
+    skrifa.close();
+    return true;
 }

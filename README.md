@@ -1,20 +1,67 @@
 # FORR3CG - Lokaverkefni
 Viktor Óli Bjarkason - Tækniskólinn - 2023
 
-# Dagbók
+## Skýrsla
 
-## 21.02.23
+[Dagbók](https://github.com/viktorob/FORR3CG_lokaverkefni/dabgok.md)
 
-Setti upp umhverfi, bjó til þetta repo og skrifaði nokkur föll í Búnaðar klasanum.
+Í þessu verkefni áttum við að skrifa forrit sem heldur utan um búnað Tækniskólans og staðsetningu hans. Þetta gerði ég með því að skrifa listaklasa sem hélt utan um undirklasa sem erfa parent klasa og skrifa síðan notendaviðmót sem vinnur með listann. Ég valdi að nota tætitöflu (hash table) sem listaklasann þar sem það veitir flest stig og ætti að vera aðeins meiri áskorun. Mín útfærsla virkar þannig að nánast öll virkni er útfærð í föllum í klösunum og því þurfti ég nánast bara að kalla á þau í notendaviðmótinu sama hvað þurfti að gera.
 
-## 22.02.23
+### Aukakröfur
 
-Kláraði grunnkröfur í öllum klösum nema listaklasanum sjálfum (hash table). En byrjaði samt að skrifa header skránna hans.
+- Skráavinnsla, hægt er að skrifa listann í skrár og lesa í listann úr skrá. (10 stig)
+- Gögnin eru röðuð í listanum (eftir verðmæti). Útheimtir að útfæra samanburðarvirkjana. (5 stig)
+- Litir í viðmóti (skipanir eru bláar, villur rauðar og gögn gul) (5 stig)
+- Prenta á skjá búnað í ákveðinni stofu og ákveðinni hæð í ákveðnu húsi. (5 stig)
+- Prenta á skjá búnað af ákveðinni gerð, t.d. alla stóla. (gerði fyrir allar gerðir) (5 stig)
+- Afritunarsmiður (e. copy constructor) og gildisveitingavirkinn (e. assignment operator) fyrir listaklasann. (5 stig
+  _Annað sem mér datt í hug_
+- Prenta gögn úr skránni (án þess að yfirskrifa núverandi gögn)
 
-## 23.02.23
+### Leiðbeiningar fyrir viðmót
 
-Byrjaði á listaklasanum, skrifaði nokkur föll þar (t.d. einfalt hash fall og skrá föllin) og útfærði samanburðarvirkja fyrir Búnaðar klasann.
+#### SKIPANIR
 
-## 25.02.23
+##### TÝPA = borð, stóll, skjávarpi og tölva
+##### AUKA = sætafjöldi, snúningur, lúmen, kaupár
+##### ATH. SKRÁARHEITI gerir ráð fyrir að skráin sé .txt (ekki þarf að taka það fram) og er valkvæmt, ef ekkert er valið er gogn.txt lesin
 
-Kláraði listaklasann og skrifaði einfalt notendaviðmót. Grunnkröfur ættu að vera klárar og að auki er listinn nú raðaður eftir verðmæti (aukakrafa). (prentast samt ekki raðaður því það þyrfti að útfæra það sérstaklega).
+SKRÁ búnað
+skrá TÝPA {auðkenni} {stadsetning} {verðmæti} {AUKA}
+Dæmi: skrá borð 501 21209 1000 4
+
+EYÐA búnaði - syntax
+eyða {auðkenni}
+Dæmi: eyða 501
+
+UPPFÆRA staðsetningu búnaðar
+uppfæra {auðkenni} {ný staðsetning}
+Dæmi: uppfæra 501 23250
+
+PRENTA búnað eftir auðkenni
+prenta id {auðkenni}
+Dæmi: prenta 501
+
+PRENTA búnað eftir húsi
+prenta hús {HÚS}
+Dæmi: prenta hús 09
+
+PRENTA búnað eftir týpu
+prenta {TÝPA}
+Dæmi: prenta stóla
+
+PRENTA búnað eftir nákvæmri staðsetningu (húsi, hæð og herbergi)
+prenta stað {HÚS} {HÆÐ} {HERBERGI}
+Dæmi: prenta stað 21 2 9
+
+PRENTA GÖGN úr skrá
+prenta skra {SKRÁARHEITI} eða prenta skra
+Dæmi: prenta skra flottskra
+
+LESA gögn úr skrá (og yfirskrifa núverandi)
+lesa {SKRÁARHEITI} EÐA lesa
+Dæmi: lesa flottskra
+
+### Myndband
+
+[Myndband með virkni]()

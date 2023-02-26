@@ -12,12 +12,11 @@ int Tolva::get_kaupar() {
     return this->kaupar;
 }
 
-int Tolva::set_kaupar(int nytt_kaupar) {
+void Tolva::set_kaupar(int nytt_kaupar) {
     this->kaupar = nytt_kaupar;
 }
 
 void Tolva::prenta() {
-    //KLÁRA
     std::cout << "Tölva, kaupár: " << this->get_kaupar() << ", auðkenni: " << this->get_audkenni()
               << ", verðmæti: " << this->get_verdmaeti() << " kr., hús: " << this->get_hus() 
               << ", hæð: " << this->get_haed() << ", herbergi: " << this->get_herbergi()
