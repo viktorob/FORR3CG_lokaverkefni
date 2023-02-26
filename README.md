@@ -15,7 +15,8 @@ Viktor Óli Bjarkason - Tækniskólinn - 2023
 - Prenta á skjá búnað í ákveðinni stofu og ákveðinni hæð í ákveðnu húsi. (5 stig)
 - Prenta á skjá búnað af ákveðinni gerð, t.d. alla stóla. (gerði fyrir allar gerðir) (5 stig)
 - Afritunarsmiður (e. copy constructor) og gildisveitingavirkinn (e. assignment operator) fyrir listaklasann. (5 stig
-  _Annað sem mér datt í hug_
+
+_Annað sem mér datt í hug_
 - Prenta gögn úr skránni (án þess að yfirskrifa núverandi gögn)
 
 ### Leiðbeiningar fyrir viðmót
@@ -31,38 +32,50 @@ skrá TÝPA {auðkenni} {stadsetning} {verðmæti} {AUKA}
 Dæmi: skrá borð 501 21209 1000 4
 
 EYÐA búnaði
-
+```
 eyða {auðkenni}
-
 Dæmi: eyða 501
-
+```
 UPPFÆRA staðsetningu búnaðar
+```
 uppfæra {auðkenni} {ný staðsetning}
 Dæmi: uppfæra 501 23250
-
+```
 PRENTA búnað eftir auðkenni
+```
 prenta id {auðkenni}
 Dæmi: prenta 501
+```
 
 PRENTA búnað eftir húsi
+```
 prenta hús {HÚS}
 Dæmi: prenta hús 09
+```
 
 PRENTA búnað eftir týpu
+```
 prenta {TÝPA}
 Dæmi: prenta stóla
+```
 
 PRENTA búnað eftir nákvæmri staðsetningu (húsi, hæð og herbergi)
+```
 prenta stað {HÚS} {HÆÐ} {HERBERGI}
 Dæmi: prenta stað 21 2 9
+```
 
 PRENTA GÖGN úr skrá
+```
 prenta skra {SKRÁARHEITI} eða prenta skra
 Dæmi: prenta skra flottskra
+```
 
 LESA gögn úr skrá (og yfirskrifa núverandi)
+```
 lesa {SKRÁARHEITI} EÐA lesa
 Dæmi: lesa flottskra
+```
 
 ### Myndband
 
