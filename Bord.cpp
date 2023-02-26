@@ -4,7 +4,7 @@ Bord::Bord() {
     this->saeta_fjoldi = -1;
 }
 
-Bord::Bord(int saeta_fjoldi, int audkenni, int verdmaeti, int stadsetning) : Bunadur(audkenni, verdmaeti, stadsetning) {
+Bord::Bord(int audkenni, int stadsetning, int verdmaeti, int saeta_fjoldi) : Bunadur(audkenni, stadsetning, verdmaeti) {
     this->saeta_fjoldi = saeta_fjoldi;
 }
 
@@ -17,8 +17,9 @@ void Bord::set_saeti(int nyr_saeta_fjoldi) {
 }
 
 void Bord::prenta() {
-    std::cout << "Borð, sætafjöldi: " << std::to_string(this->get_saeti()) << ", auðkenni: " << std::to_string(this->get_audkenni())
-              << ", verðmæti: " << std::to_string(this->get_verdmaeti()) << " kr., staðsetning: " << std::to_string(this->get_stadsetning())
+    std::cout << "Borð, sætafjöldi: " << this->get_saeti() << ", auðkenni: " << this->get_audkenni()
+              << ", verðmæti: " << this->get_verdmaeti() << " kr., hús: " << this->get_hus() 
+              << ", hæð: " << this->get_haed() << ", herbergi: " << this->get_herbergi()
               << "\n";
 }
 

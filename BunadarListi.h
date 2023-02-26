@@ -14,21 +14,22 @@ class BunadarListi {
     private:
         BunadarNode** heads;
         int staerd;
-        int hash(int staerd);//gera betra (sem aukakröfu)
+        int hash(int audkenni);//gera betra (sem aukakröfu)
     public:
         BunadarListi();
-        BunadarListi(int audkenni);
+        BunadarListi(int staerd);
         //BunadarListi(BunadarListi& gamli); aukakrafa
         //BunadarListi& operator=(BunadarListi& gamli); aukakrafa
         void skra_bunad(Bunadur* bun);
-        void skra_bord(int saeta_fjoldi, int audkenni, int verdmaeti, int stadsetning);
-        void skra_stol(std::string tegund, int audkenni, int verdmaeti, int stadsetning);
-        void skra_skjavarpa(int lumen, int audkenni, int verdmaeti, int stadsetning);
-        void skra_tolvu(int kaupar, int audkenni, int verdmaeti, int stadsetning);
-        void skoda_bunad(int audkenni);
-        void eyda_bunadi(int audkenni);
-        void breyta_stadsetningu(int audkenni, int ny_stadsetning);
+        void skra_bord(int audkenni, int stadsetning, int verdmaeti, int saeta_fjoldi);
+        void skra_stol(int audkenni, int stadsetning, int verdmaeti, bool snuningur);
+        void skra_skjavarpa(int audkenni, int stadsetning, int verdmaeti, int lumen);
+        void skra_tolvu(int audkenni, int stadsetning, int verdmaeti, int kaupar);
+        bool skoda_bunad(int audkenni);
+        bool eyda_bunadi(int audkenni);
+        bool breyta_stadsetningu(int audkenni, int ny_stadsetning);
         void prenta_i_husi(int hus);
+        void prenta_eftir_audkenni(int audkenni);
         void prenta_allt();
 
 };

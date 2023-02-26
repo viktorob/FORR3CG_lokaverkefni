@@ -10,7 +10,7 @@ class Skjavarpi : public Bunadur {
         int lumen;
     public:
         Skjavarpi();
-        Skjavarpi(int lumen, int audkenni, int verdmaeti, int stadsetning);
+        Skjavarpi(int audkenni, int stadsetning, int verdmaeti, int lumen);
         int get_lumen();
         void set_lumen(int ny_lumen);
         void prenta();

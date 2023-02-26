@@ -10,7 +10,7 @@ class Bord : public Bunadur {
         int saeta_fjoldi;
     public:
         Bord();
-        Bord(int saeta_fjoldi, int audkenni, int verdmaeti, int stadsetning);
+        Bord(int audkenni, int stadsetning, int verdmaeti, int saeta_fjoldi);
         int get_saeti();
         void set_saeti(int nyr_saeta_fjoldi);
         void prenta();

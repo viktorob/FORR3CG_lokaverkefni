@@ -11,7 +11,7 @@ class Bunadur {
         char stadsetning[3];
     public:
         Bunadur();
-        Bunadur(int audkenni, int verdmaeti, int stadsetning);
+        Bunadur(int audkenni, int stadsetning, int verdmaeti);
         int get_audkenni();
         void set_audkenni(int nytt_audkenni);
         int get_verdmaeti();

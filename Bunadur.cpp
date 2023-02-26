@@ -7,7 +7,7 @@ Bunadur::Bunadur() {
     
 }
 
-Bunadur::Bunadur(int audkenni, int verdmaeti, int stadsetning) {
+Bunadur::Bunadur(int audkenni, int stadsetning, int verdmaeti) {
     this->audkenni = audkenni;
     this->verdmaeti = verdmaeti;
     set_stadsetning(stadsetning);
@@ -68,9 +68,9 @@ void Bunadur::set_herbergi(int nytt_herbergi) {
 }
 
 void Bunadur::prenta() {
-    std::cout << "Búnaður, auðkenni: " << std::to_string(this->get_audkenni()) << ", verðmæti: " 
-              << std::to_string(this->get_verdmaeti()) << ", hús: " << std::to_string(this->get_hus()) 
-              << ", hæð:" << std::to_string(this->get_haed()) << ", herbergi: " << std::to_string(this->get_herbergi()) 
+    std::cout << "Búnaður, auðkenni: " << this->get_audkenni() << ", verðmæti: " 
+              << this->get_verdmaeti() << ", hús: " << this->get_hus() 
+              << ", hæð: " << this->get_haed() << ", herbergi: " << this->get_herbergi()
               << "\n";
 }
 

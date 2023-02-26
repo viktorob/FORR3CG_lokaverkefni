@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include <string>
 
@@ -7,12 +6,12 @@
 
 class Stoll : public Bunadur {
     private:
-        std::string tegund;
+        bool snuningur;
     public:
         Stoll();
-        Stoll(std::string tegund, int audkenni, int verdmaeti, int stadsetning);
-        std::string get_tegund();
-        void set_tegund(std::string ny_tegund);
+        Stoll(int audkenni, int stadsetning, int verdmaeti, bool snuningur);
+        bool get_snuningur();
+        void set_tegund(bool nyr_snuningur);
         void prenta();
         std::string getType();
 };

@@ -4,7 +4,7 @@ Skjavarpi::Skjavarpi() {
     this->lumen = -1;
 }
 
-Skjavarpi::Skjavarpi(int lumen, int audkenni, int verdmaeti, int stadsetning) : Bunadur(audkenni, verdmaeti, stadsetning) {
+Skjavarpi::Skjavarpi(int audkenni, int stadsetning, int verdmaeti, int lumen) : Bunadur(audkenni, stadsetning, verdmaeti) {
     this->lumen = lumen;
 }
 
@@ -17,8 +17,10 @@ void Skjavarpi::set_lumen(int ny_lumen) {
 }
 
 void Skjavarpi::prenta() {
-    //KLÁRA
-    std::cout << "Skjávarpi";
+    std::cout << "Skjávarpi, lúmen: " << this->get_lumen() << ", auðkenni: " << this->get_audkenni()
+              << ", verðmæti: " << this->get_verdmaeti() << " kr., hús: " << this->get_hus() 
+              << ", hæð: " << this->get_haed() << ", herbergi: " << this->get_herbergi()
+              << "\n";
 }
 
 std::string Skjavarpi::getType() {

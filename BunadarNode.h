@@ -8,6 +8,6 @@ struct BunadarNode {
 
     BunadarNode(Bunadur* bun) {
         this->bun = bun;
-        this->next = next;
+        this->next = nullptr;
     }
 };

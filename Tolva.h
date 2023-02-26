@@ -10,7 +10,7 @@ class Tolva : public Bunadur {
         int kaupar;
     public:
         Tolva();
-        Tolva(int kaupar, int audkenni, int verdmaeti, int stadsetning);
+        Tolva(int audkenni, int stadsetning, int verdmaeti, int kaupar);
         int get_kaupar();
         int set_kaupar(int nytt_kaupar);
         void prenta();
