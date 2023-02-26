@@ -160,7 +160,7 @@ int main() {
             } else if(prentun == "tölvur") {
                 rlutil::setColor(rlutil::YELLOW);
                 bl.prenta_tolvur();
-            } else if(prentun == "skra") {
+            } else if(prentun == "skrá") {
                 BunadarListi bl2;
                 ss >> skraarheiti;
                 if(skraarheiti.length() == 0) {

@@ -75,8 +75,8 @@ Dæmi: prenta stað 21 2 9
 
 PRENTA GÖGN úr skrá
 ```
-prenta skra {SKRÁARHEITI} eða prenta skra
-Dæmi: prenta skra flottskra
+prenta skrá {SKRÁARHEITI} eða prenta skrá
+Dæmi: prenta skrá flottskra
 ```
 
 LESA gögn úr skrá (og yfirskrifa núverandi)

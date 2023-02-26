@@ -176,7 +176,6 @@ void BunadarListi::prenta_i_husi(int hus) {
         while(current) {
             if (current->bun->get_hus() == hus) {
                 current->bun->prenta();
-                return;
             }
             current = current->next;
         }
