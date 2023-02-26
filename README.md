@@ -87,4 +87,4 @@ Dæmi: lesa flottskra
 
 ### Myndband
 
-[Myndband með virkni]()
+[Myndband með virkni](https://drive.google.com/file/d/1N1EQrB2wpwxePuDP8BIsrab_TgQ_4MHA/view?usp=sharing)
