@@ -30,8 +30,10 @@ SKRÁ búnað
 skrá TÝPA {auðkenni} {stadsetning} {verðmæti} {AUKA}
 Dæmi: skrá borð 501 21209 1000 4
 
-EYÐA búnaði - syntax
+EYÐA búnaði
+
 eyða {auðkenni}
+
 Dæmi: eyða 501
 
 UPPFÆRA staðsetningu búnaðar
