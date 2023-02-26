@@ -16,7 +16,7 @@ Viktor Óli Bjarkason - Tækniskólinn - 2023
 - Prenta á skjá búnað af ákveðinni gerð, t.d. alla stóla. (gerði fyrir allar gerðir) (5 stig)
 - Afritunarsmiður (e. copy constructor) og gildisveitingavirkinn (e. assignment operator) fyrir listaklasann. (5 stig
 
-_Annað sem mér datt í hug_
+_Annað sem mér datt í hug (og útfærði auðvitað)_
 - Prenta gögn úr skránni (án þess að yfirskrifa núverandi gögn)
 
 ### Leiðbeiningar fyrir viðmót
