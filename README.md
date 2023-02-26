@@ -21,26 +21,32 @@ _Annað sem mér datt í hug_
 
 ### Leiðbeiningar fyrir viðmót
 
-#### SKIPANIR
+#### Lýsingar
 
 ##### TÝPA = borð, stóll, skjávarpi og tölva
 ##### AUKA = sætafjöldi, snúningur, lúmen, kaupár
-##### ATH. SKRÁARHEITI gerir ráð fyrir að skráin sé .txt (ekki þarf að taka það fram) og er valkvæmt, ef ekkert er valið er gogn.txt lesin
+##### ATH. SKRÁARHEITI gerir ráð fyrir að skráin sé .txt (ekki þarf að taka það fram) og er valkvæmt, ef ekkert er valið er gogn.txt lesin.
+
+#### Skipanir
 
 SKRÁ búnað
-skrá TÝPA {auðkenni} {stadsetning} {verðmæti} {AUKA}
+```
+skrá {TÝPA} {auðkenni} {stadsetning} {verðmæti} {AUKA}
 Dæmi: skrá borð 501 21209 1000 4
+```
 
 EYÐA búnaði
 ```
 eyða {auðkenni}
 Dæmi: eyða 501
 ```
+
 UPPFÆRA staðsetningu búnaðar
 ```
 uppfæra {auðkenni} {ný staðsetning}
 Dæmi: uppfæra 501 23250
 ```
+
 PRENTA búnað eftir auðkenni
 ```
 prenta id {auðkenni}
