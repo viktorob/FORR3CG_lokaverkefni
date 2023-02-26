@@ -21,11 +21,13 @@ _Annað sem mér datt í hug_
 
 ### Leiðbeiningar fyrir viðmót
 
-#### Lýsingar
+#### Skýringar
 
-##### TÝPA = borð, stóll, skjávarpi og tölva
-##### AUKA = sætafjöldi, snúningur, lúmen, kaupár
-##### ATH. SKRÁARHEITI gerir ráð fyrir að skráin sé .txt (ekki þarf að taka það fram) og er valkvæmt, ef ekkert er valið er gogn.txt lesin.
+TÝPA = borð, stóll, skjávarpi og tölva
+
+AUKA = sætafjöldi, snúningur, lúmen, kaupár
+
+ATH. SKRÁARHEITI gerir ráð fyrir að skráin sé .txt (ekki þarf að taka það fram) og er valkvæmt, ef ekkert er valið er gogn.txt lesin.
 
 #### Skipanir
 
