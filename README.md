@@ -3,7 +3,7 @@ Viktor Óli Bjarkason - Tækniskólinn - 2023
 
 ## Skýrsla
 
-[Dagbók](https://github.com/viktorob/FORR3CG_lokaverkefni/dabgok.md)
+[Dagbók](https://github.com/viktorob/FORR3CG_lokaverkefni/dagbok.md)
 
 Í þessu verkefni áttum við að skrifa forrit sem heldur utan um búnað Tækniskólans og staðsetningu hans. Þetta gerði ég með því að skrifa listaklasa sem hélt utan um undirklasa sem erfa parent klasa og skrifa síðan notendaviðmót sem vinnur með listann. Ég valdi að nota tætitöflu (hash table) sem listaklasann þar sem það veitir flest stig og ætti að vera aðeins meiri áskorun. Mín útfærsla virkar þannig að nánast öll virkni er útfærð í föllum í klösunum og því þurfti ég nánast bara að kalla á þau í notendaviðmótinu sama hvað þurfti að gera.
 
