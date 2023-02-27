@@ -29,6 +29,8 @@ AUKA = sætafjöldi, snúningur, lúmen, kaupár
 
 ATH. SKRÁARHEITI gerir ráð fyrir að skráin sé .txt (ekki þarf að taka það fram) og er valkvæmt, ef ekkert er valið er gogn.txt lesin.
 
+ATH. TESTGÖGN eru í skránni gogn.txt og eru lesin með "lesa" skipuninni
+
 #### Skipanir
 
 SKRÁ búnað
